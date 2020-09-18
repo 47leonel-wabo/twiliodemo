@@ -2,8 +2,11 @@ package com.aiwadev.twiliodemo.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotBlank;
+
 public class SmsRequest {
 
+    @NotBlank
     private String destinationNumber;
 
     public SmsRequest(@JsonProperty("destination") String destinationNumber,
@@ -20,6 +23,7 @@ public class SmsRequest {
                 '}';
     }
 
+    @NotBlank
     private String messageBody;
 
     public String getDestinationNumber() {
