@@ -1,10 +1,13 @@
 package com.aiwadev.twiliodemo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SmsRequest {
 
     private String destinationNumber;
 
-    public SmsRequest(String destinationNumber, String messageBody) {
+    public SmsRequest(@JsonProperty("destination") String destinationNumber,
+                      @JsonProperty("message") String messageBody) {
         this.destinationNumber = destinationNumber;
         this.messageBody = messageBody;
     }
