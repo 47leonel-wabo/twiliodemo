@@ -1,11 +1,11 @@
 package com.aiwadev.twiliodemo.controllers;
 
 import com.aiwadev.twiliodemo.model.SmsRequest;
-import com.aiwadev.twiliodemo.services.SmsSender;
-import com.aiwadev.twiliodemo.services.SmsSenderImpl;
 import com.aiwadev.twiliodemo.services.TwilioSmsSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/sms")
@@ -19,7 +19,7 @@ public class TwilioAppController {
     }
 
     @PostMapping("/new")
-    public void sendAnSms(@RequestBody SmsRequest smsRequest) {
+    public void sendAnSms(@Valid @RequestBody SmsRequest smsRequest) {
         smsSender.sendSms(smsRequest);
     }
 }

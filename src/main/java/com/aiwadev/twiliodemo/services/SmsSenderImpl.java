@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("twilio")
 public class SmsSenderImpl implements SmsSender {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(SmsSender.class);
@@ -26,7 +26,7 @@ public class SmsSenderImpl implements SmsSender {
     public void sendSms(SmsRequest smsRequest) {
         if (isValidPhoneNumber(smsRequest.getDestinationNumber())) {
             PhoneNumber to = new PhoneNumber(smsRequest.getDestinationNumber());
-            PhoneNumber from = new PhoneNumber("");
+            PhoneNumber from = new PhoneNumber(twilioConfiguration.getTrialNumber());
             String messageBody = smsRequest.getMessageBody();
 
             MessageCreator messageCreator = Message.creator(to, from, messageBody);
